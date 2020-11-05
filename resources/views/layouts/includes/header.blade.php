@@ -17,3 +17,5 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('app-assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <script type="javascript" src="{{ asset('jQuery/jquery-3.5.1.slim.min.js') }}"></script>

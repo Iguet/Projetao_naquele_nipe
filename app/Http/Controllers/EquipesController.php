@@ -2,83 +2,48 @@
 
 namespace App\Http\Controllers;
 
+use App\Equipe;
 use Illuminate\Http\Request;
 
 class EquipesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return view('equipes.index');
+        $equipes = Equipe::get();
+        return view('equipes.index')->with('equipes',$equipes);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $equipe = new Equipe;
+        $equipe->nome = $request->input('nome');
+        $equipe->meta = $request->input('meta');
+
+        $equipe->save();
+        return redirect('/equipes')->with('success',"Cadastrado com sucesso!");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        return view('equipes.edit', ['equipe' => Equipe::findOrFail($id)]);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            "nome" => ["required", "max:191", "string"],
+            "supervisor_id" => ["integer", "nullable"],
+            "meta" => ["integer", "nullable"]
+        ]);
+
+        $equipe = Equipe::findOrFail($id)->update($data);
+
+        return $equipe;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        Equipe::findOrFail($id)->delete();
+
+        return redirect('/equipes')->with('success',"Excluido com sucesso!");
     }
 }

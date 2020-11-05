@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EquipesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +25,17 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('equipes')->group(function () {
-    Route::get('/', [EquipesController::class, 'index'])->name('equipes.lista');
+Route::get('/usuarios', 'UsuariosController@index');
+
+Route::get('/canais', 'CanaisController@index');
+
+Route::get('/estagios', 'EstagioController@index');
+
+Route::name('equipes')->prefix('equipes')->group(function () {
+    Route::get('/', 'EquipesController@index')->name('.index');
+    Route::post('/add', 'EquipesController@store')->name('.store');
+    Route::get('/{id}', 'EquipesController@show')->name('.show');
+    Route::put('/{id}', 'EquipesController@update')->name('.update');
+    Route::get('/{id}/delete', 'EquipesController@destroy')->name('.destroy');
 });
+
