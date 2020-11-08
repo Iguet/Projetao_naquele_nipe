@@ -1,22 +1,14 @@
 <?php
 
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProdutoController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Auth::routes();
 
 Route::get('/', function () {
-    if (auth()->user()){
+    if (auth()->user()) {
         return view('home');
     }
 
@@ -25,17 +17,13 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/usuarios', 'UsuariosController@index');
+Route::name('users')->prefix('users')->group(function () {
+    Route::get('/', [UsersController::class, 'index'])->name('.index');
+});
 
-Route::get('/canais', 'CanaisController@index');
-
-Route::get('/estagios', 'EstagioController@index');
-
-Route::name('equipes')->prefix('equipes')->group(function () {
-    Route::get('/', 'EquipesController@index')->name('.index');
-    Route::post('/add', 'EquipesController@store')->name('.store');
-    Route::get('/{id}', 'EquipesController@show')->name('.show');
-    Route::put('/{id}', 'EquipesController@update')->name('.update');
-    Route::get('/{id}/delete', 'EquipesController@destroy')->name('.destroy');
+Route::name('produtos')->prefix('produtos')->group(function () {
+    Route::get('/', [ProdutoController::class, 'index'])->name('.index');
+    Route::get('/show/{id}', [ProdutoController::class, 'show'])->name('.show');
+    Route::post('/store', [ProdutoController::class, 'store'])->name('.store');
 });
 

@@ -1,18 +1,14 @@
 @extends('layouts.app')
 
 @section('links')
-<link href="{{asset('app-assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{asset('app-assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')
-<div class="container-fluid">
-    <div class="card shadow">
-        <div class="card-body">
-            <div style="display: block; height: 45px;">
-                <button style="float: right " type="button" class="btn btn-primary" data-toggle="modal"
-                    data-target="#createModal"">Nova Equipe</button>
-            </div>
-            <div class=" modal fade" id="createModal" tabindex="-1" role="dialog">
+    <div class="container-fluid">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="modal fade" id="createModal" tabindex="-1" role="dialog">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -28,12 +24,12 @@
                                         <div class="row">
                                             <label class="">Nome:</label>
                                             <input style="margin-left: 5px;" class="form-control form-control-user"
-                                                type="text">
+                                                   type="text">
                                         </div>
                                         <div style="margin-top: 10px" class="row">
                                             <label>Meta:</label>
                                             <input style="margin-left: 5px;" class="form-control form-control-user  "
-                                                type="number">
+                                                   type="number">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                     </form>
@@ -46,17 +42,17 @@
 
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @section('scripts')
-<!-- Page level plugins -->
-<script src=" {{asset('app-assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{asset('app-assets/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <!-- Page level plugins -->
+    <script src=" {{asset('app-assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('app-assets/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
-<!-- Page level custom scripts -->
-<script src="{{asset('app-assets/js/demo/datatables-demo.js')}}"></script>
+    <!-- Page level custom scripts -->
+    <script src="{{asset('app-assets/js/demo/datatables-demo.js')}}"></script>
 @endsection

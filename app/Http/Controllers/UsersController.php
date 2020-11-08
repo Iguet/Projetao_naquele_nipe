@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 
-class UsuariosController extends Controller
+class UsersController extends Controller
 {
     public function index(){
         $usuarios = User::get();
