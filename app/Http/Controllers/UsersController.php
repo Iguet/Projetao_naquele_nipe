@@ -8,7 +8,7 @@ use App\User;
 class UsersController extends Controller
 {
     public function index(){
-        $usuarios = User::get();
-        return view('usuarios.index')->with('usuarios',$usuarios);
+        $usuarios = User::all();
+        return view('usuarios.index', ['usuarios' => $usuarios]);
     }
 }
