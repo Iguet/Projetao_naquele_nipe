@@ -1,4 +1,4 @@
-<div class="modal fade" id="criaModal" tabindex="-1" role="dialog" aria-labelledby="criaModalLabel"
+<div class="modal fade" id="modal_produtos" tabindex="-1" role="dialog" aria-labelledby="criaModalLabel"
      aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -9,16 +9,16 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" class="user" action="{{ route('produtos.store') }}">
+                <form method="post" class="user" action="{{ $produto ? route('produtos.update', ['id' => $produto->id]) : route('produtos.store') }}">
                     @csrf
                     <div class="form-group">
                         <input placeholder="Digite o nome" name="nome" class="form-control"
-                               type="text">
+                               type="text" value="{{ $produto->nome ?? '' }}">
                     </div>
                     <div class="form-group">
                         <textarea name="descricao"
                                   class="form-control"
-                                  placeholder="Digite a descrição"></textarea>
+                                  placeholder="Digite a descrição">{{ $produto->descricao ?? '' }}</textarea>
                         <div style="margin-top: 20px; " class="row">
                             <button type="submit" class="btn btn-block btn-primary">Salvar</button>
                         </div>

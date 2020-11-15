@@ -13,16 +13,33 @@ class ProdutoController extends Controller
         return view('produtos.index')->with('produtos', $produtos);
     }
 
-    public function show($id)
+    public function show($id = null)
     {
-        $produto = Produto::findOrFail($id);
-        return view('produtos.cadastro')->with('produto', $produto);
+        $produto = null;
+
+        if ($id) $produto = Produto::findOrFail($id);
+
+        return view('produtos.cadastro', ['produto' => $produto]);
     }
 
     public function store(Request $request, Produto $produto)
     {
         $produto->fill($request->all());
         $produto->save();
-        return redirect()->route('produtos.index')->with('success');
+        return redirect()->route('produtos.index')->with('success', 'Produto Cadastrado com Sucesso!');
+    }
+
+    public function update(Request $request, $id)
+    {
+        $produto = Produto::find($id);
+        $produto->fill($request->all());
+        $produto->save();
+        return redirect()->route('produtos.index')->with('success', 'Produto Editado com Sucesso!');
+    }
+
+    public function destroy($id)
+    {
+        $produto = Produto::find($id);
+        $produto->delete();
     }
 }

@@ -7,28 +7,28 @@
 @section('content')
     <div class="container-fluid">
         <div class="card shadow">
-              <table class="table">
+            <div class="card-body">
+                <table class="table table-hover" id="dataTable">
                     <thead>
-                      <tr>
+                    <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Email</th>
                         <th scope="col">Ação</th>
-                      </tr>
+                    </tr>
                     </thead>
                     <tbody>
-                    @foreach ($usuarios as $usuario)        
+                    @foreach ($usuarios as $usuario)
                         <tr>
                             <th scope="row"> {{ $usuario->id}} </th>
                             <td> {{ $usuario->name}} </td>
                             <td> {{ $usuario->email}} </td>
-                            <td> Editar </td>
+                            <td> Editar</td>
                         </tr>
-                      @endforeach
-    
+                    @endforeach
+
                     </tbody>
-                  </table>
-                </div>
+                </table>
             </div>
         </div>
     </div>
