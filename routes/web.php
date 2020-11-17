@@ -15,13 +15,13 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
 
-Route::name('users')->prefix('users')->group(function () {
+Route::name('users')->prefix('users')->middleware('auth')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('.index');
 });
 
-Route::name('produtos')->prefix('produtos')->group(function () {
+Route::name('produtos')->prefix('produtos')->middleware('auth')->group(function () {
     Route::get('/', [ProdutoController::class, 'index'])->name('.index');
     Route::get('/show/{id?}', [ProdutoController::class, 'show'])->name('.show');
     Route::post('/store', [ProdutoController::class, 'store'])->name('.store');
