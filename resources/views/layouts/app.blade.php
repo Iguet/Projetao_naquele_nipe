@@ -42,6 +42,8 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{ route('users.index') }}">Usuários</a>
                     <a class="collapse-item" href="{{ route('produtos.index') }}">Produtos</a>
+                    <a class="collapse-item" href="{{ route('lotes.index') }}">Lotes</a>
+                    <a class="collapse-item" href="{{ route('vendas.index') }}">Vendas</a>
                 </div>
             </div>
         </li>
@@ -142,7 +144,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
-                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()['name'] }}</span>
+                                    class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()['name'] ?? '' }}</span>
                             <svg width="1em" height="1em" viewBox="0 0 16 16"
                                  class="bi bi-person img-profile rounded-circle" fill="currentColor"
                                  xmlns="http://www.w3.org/2000/svg">

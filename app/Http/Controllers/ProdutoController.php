@@ -15,9 +15,7 @@ class ProdutoController extends Controller
 
     public function show($id = null)
     {
-        $produto = null;
-
-        if ($id) $produto = Produto::findOrFail($id);
+        $produto = Produto::find($id);
 
         return view('produtos.cadastro', ['produto' => $produto]);
     }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LoteController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -29,3 +31,18 @@ Route::name('produtos')->prefix('produtos')->middleware('auth')->group(function 
     Route::delete('/delete/{id}', [ProdutoController::class, 'destroy'])->name('.delete');
 });
 
+Route::name('lotes')->prefix('lotes')->middleware('auth')->group(function () {
+    Route::get('/', [LoteController::class, 'index'])->name('.index');
+    Route::get('/show/{id?}', [LoteController::class, 'show'])->name('.show');
+    Route::post('/store', [LoteController::class, 'store'])->name('.store');
+    Route::post('/update/{id}', [LoteController::class, 'update'])->name('.update');
+    Route::delete('/delete/{id}', [LoteController::class, 'destroy'])->name('.delete');
+});
+
+Route::name('vendas')->prefix('vendas')->middleware('auth')->group(function () {
+    Route::get('/', [VendaController::class, 'index'])->name('.index');
+    Route::get('/show/{id?}', [VendaController::class, 'show'])->name('.show');
+    Route::post('/store', [VendaController::class, 'store'])->name('.store');
+    Route::post('/update/{id}', [VendaController::class, 'update'])->name('.update');
+    Route::delete('/delete/{id}', [VendaController::class, 'destroy'])->name('.delete');
+});

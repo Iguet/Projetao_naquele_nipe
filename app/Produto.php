@@ -12,4 +12,14 @@ class Produto extends Model
         'nome',
         'descricao'
     ];
+
+    public function lote()
+    {
+        return $this->hasMany('App\Lote');
+    }
+
+    public function venda()
+    {
+        return $this->hasMany('App\Venda');
+    }
 }
