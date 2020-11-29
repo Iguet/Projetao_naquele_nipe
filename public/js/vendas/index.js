@@ -47,4 +47,22 @@ $(function() {
             $("#modal_vendas").modal('show')
         })
     })
+
+    $(document).on("click", "#submit_venda", function (e) {
+        if ($("select[name='produto_id']").val() == '') {
+            e.stopPropagation()
+            Swal.fire('Informe um produto!', '', 'warning')
+            return
+        } else if ($("input[name='valor']").val() == '') {
+            e.stopPropagation()
+            Swal.fire('Digite um valor!', '', 'warning')
+            return
+        } else if ($("input[name='quantidade']").val() == '') {
+            e.stopPropagation()
+            Swal.fire('Digite uma quantidade!', '', 'warning')
+            return
+        }
+
+        $("#venda_form").submit();
+    })
 })

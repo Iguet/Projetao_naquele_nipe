@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Lote;
 use App\Produto;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoteRequest;
 
 class LoteController extends Controller
 {
@@ -25,14 +26,14 @@ class LoteController extends Controller
         ]);
     }
 
-    public function store(Request $request, Lote $lote)
+    public function store(LoteRequest $request, Lote $lote)
     {
         $lote->fill($request->all());
         $lote->save();
         return redirect()->route('lotes.index')->with('success', 'Lote Cadastrado com Sucesso!');
     }
 
-    public function update(Request $request, $id)
+    public function update(LoteRequest $request, $id)
     {
         $lote = Lote::find($id);
         $lote->fill($request->all());

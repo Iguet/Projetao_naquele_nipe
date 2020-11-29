@@ -10,13 +10,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" class="user"
+                <form method="post" class="user" id="venda_form" 
                       action="{{ $venda ? route('vendas.update', ['id' => $venda->id]) : route('vendas.store') }}">
                     <div class="col-md-12">
                         @csrf
                         <div class="form-group">
                             <select class="form-control" name="produto_id">
-                                <option>Selecione um Produto</option>
+                                <option value="">Selecione um Produto</option>
                                 @foreach($produtos as $produto)
                                     <option value="{{ $produto->id }}">{{ $produto->nome }}</option>
                                 @endforeach
@@ -31,7 +31,7 @@
                                    value="{{ $venda->quantidade ?? '' }}"/>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-primary">Salvar</button>
+                            <button id="submit_venda" type="button" class="btn btn-block btn-primary">Salvar</button>
                         </div>
                     </div>
                 </form>

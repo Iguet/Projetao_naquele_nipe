@@ -47,4 +47,18 @@ $(function() {
             $("#modal_produtos").modal('show')
         })
     })
+
+    $(document).on("click", "#submit_produto", function (e) {
+        if ($("input[name='nome']").val() == '') {
+            e.stopPropagation()
+            Swal.fire('Digite um nome!', '', 'warning')
+            return
+        } else if ($("textarea[name='descricao']").val() == '') {
+            e.stopPropagation()
+            Swal.fire('Digite uma descrição!', '', 'warning')
+            return
+        }
+
+        $("#produto_form").submit();
+    })
 })

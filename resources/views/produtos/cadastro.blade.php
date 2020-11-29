@@ -9,7 +9,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" class="user"
+                <form method="post" class="user" id="produto_form" 
                       action="{{ $produto ? route('produtos.update', ['id' => $produto->id]) : route('produtos.store') }}">
                     <div class="col-md-12">
                         @csrf
@@ -23,7 +23,7 @@
                                   placeholder="Digite a descrição">{{ $produto->descricao ?? '' }}</textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-block btn-primary">Salvar</button>
+                            <button id="submit_produto" type="button" class="btn btn-block btn-primary">Salvar</button>
                         </div>
                     </div>
                 </form>
